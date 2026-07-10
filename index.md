@@ -123,7 +123,7 @@ An experienced Engineering Manager and Technical Leader with over a decade of ex
 
 ## Education & Certifications
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4 pb-8 border-b border-borderColor">
     <div>
         <p class="text-textPrimary font-bold text-sm">Dokuz Eylul University</p>
         <p class="text-xs text-textSecondary">Student, Physics (2007)</p>
@@ -133,5 +133,24 @@ An experienced Engineering Manager and Technical Leader with over a decade of ex
             <li><i class="fa-solid fa-certificate text-accent mr-1"></i> Go Essential Training</li>
             <li><i class="fa-solid fa-certificate text-accent mr-1"></i> Git from Scratch</li>
         </ul>
+    </div>
+</div>
+
+## Developer Stats
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+    <!-- GitHub Stats Widget -->
+    <div class="bg-cardBg border border-borderColor p-5 rounded-xl glow-effect transition duration-300 flex flex-col justify-between items-center min-h-[220px]">
+        <h3 class="text-accent font-bold flex items-center gap-2 mb-4 w-full"><i class="fa-brands fa-github text-accent"></i> GitHub Stats</h3>
+        <a href="https://github.com/CuteTechGuy" target="_blank" class="w-full flex justify-center items-center flex-grow">
+            <img id="github-stats-img" src="https://github-readme-stats.vercel.app/api?username=CuteTechGuy&bg_color=1e293b&title_color=10b981&text_color=94a3b8&icon_color=10b981&show_icons=true" alt="CuteTechGuy's GitHub Stats" class="max-w-full h-auto rounded-lg max-h-[175px]" />
+        </a>
+    </div>
+    <!-- daily.dev Widget -->
+    <div class="bg-cardBg border border-borderColor p-5 rounded-xl glow-effect transition duration-300 flex flex-col justify-between items-center min-h-[220px]">
+        <h3 class="text-accent font-bold flex items-center gap-2 mb-4 w-full"><i class="fa-solid fa-code text-accent"></i> daily.dev DevCard</h3>
+        <a href="https://daily.dev/thaumaturge_dev" target="_blank" class="w-full flex justify-center items-center flex-grow">
+            <img id="daily-dev-img" src="https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?theme=dark" alt="İbrahim Alkan's daily.dev DevCard" class="max-w-full h-auto max-h-[175px] rounded-lg" />
+        </a>
     </div>
 </div>
