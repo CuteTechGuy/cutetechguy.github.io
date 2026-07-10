@@ -9,3 +9,8 @@ personal_website: http://www.ibrahimalkan.com
 # Jekyll Settings
 theme: jekyll-theme-primer # GitHub Pages varsayılan temalarından biri altyapı için seçildi
 permalink: /:title/
+
+sass:
+  quiet_deps: true
+  silence_deprecations:
+    - import

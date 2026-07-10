@@ -1,29 +1,99 @@
 <!DOCTYPE html>
-<html lang="tr" class="scroll-smooth">
+<html lang="en" class="scroll-smooth bg-darkBg">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{ site.title }} | {{ site.subtitle }}</title>
+	<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23131c2e%22/><text x=%2250%25%22 y=%2258%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22system-ui, -apple-system, sans-serif%22 font-size=%2252%22 font-weight=%22900%22 fill=%22%2310b981%22>IA</text></svg>">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	
+	<!-- Early Theme Applicator -->
+	<script>
+		(function() {
+			const savedTheme = localStorage.getItem('portfolio-theme') || 'executive';
+			const html = document.documentElement;
+			if (savedTheme === 'nordic') {
+				html.classList.add('theme-nordic');
+			} else if (savedTheme === 'cyber') {
+				html.classList.add('theme-cyber');
+			}
+		})();
+	</script>
+
 	<script>
 		tailwind.config = {
 			theme: {
 				extend: {
 					colors: {
-						darkBg: '#0b0f19',
-						cardBg: '#131c2e',
-						accent: '#10b981',
-						accentHover: '#059669'
+						darkBg: 'var(--bg-color)',
+						cardBg: 'var(--card-bg-color)',
+						accent: 'var(--accent-color)',
+						accentHover: 'var(--accent-hover-color)',
+						textPrimary: 'var(--text-primary)',
+						textSecondary: 'var(--text-secondary)',
+						borderColor: 'var(--border-color)',
+						badgeBg: 'var(--badge-bg)',
 					}
 				}
 			}
 		}
 	</script>
 	<style>
+		/* Executive Theme CSS Variables (Default) */
+		:root {
+			--bg-color: #0b0f19;
+			--card-bg-color: #1e293b;
+			--text-primary: #f8fafc;
+			--text-secondary: #94a3b8;
+			--accent-color: #10b981;
+			--accent-hover-color: #059669;
+			--border-color: rgba(51, 65, 85, 0.4);
+			--badge-bg: rgba(30, 41, 59, 0.8);
+			--dot-color: rgba(255, 255, 255, 0.04);
+			--blob1-color: rgba(16, 185, 129, 0.1);
+			--blob2-color: rgba(37, 99, 235, 0.1);
+			--blob3-color: rgba(99, 102, 241, 0.05);
+			--accent-glow-color: rgba(16, 185, 129, 0.2);
+		}
+
+		/* Nordic Minimalist Theme CSS Variables */
+		.theme-nordic {
+			--bg-color: #f8fafc;
+			--card-bg-color: #ffffff;
+			--text-primary: #0f172a;
+			--text-secondary: #64748b;
+			--accent-color: #2563eb;
+			--accent-hover-color: #1d4ed8;
+			--border-color: rgba(226, 232, 240, 0.8);
+			--badge-bg: rgba(241, 245, 249, 0.8);
+			--dot-color: rgba(15, 23, 42, 0.04);
+			--blob1-color: rgba(37, 99, 235, 0.06);
+			--blob2-color: rgba(99, 102, 241, 0.06);
+			--blob3-color: rgba(16, 185, 129, 0.03);
+			--accent-glow-color: rgba(37, 99, 235, 0.12);
+		}
+
+		/* Cyber Zinc Theme CSS Variables */
+		.theme-cyber {
+			--bg-color: #09090b;
+			--card-bg-color: #18181b;
+			--text-primary: #fafafa;
+			--text-secondary: #a1a1aa;
+			--accent-color: #06b6d4;
+			--accent-hover-color: #0891b2;
+			--border-color: rgba(39, 39, 42, 0.5);
+			--badge-bg: rgba(24, 24, 27, 0.8);
+			--dot-color: rgba(255, 255, 255, 0.03);
+			--blob1-color: rgba(6, 182, 212, 0.08);
+			--blob2-color: rgba(99, 102, 241, 0.08);
+			--blob3-color: rgba(236, 72, 153, 0.04);
+			--accent-glow-color: rgba(6, 182, 212, 0.2);
+		}
+
 		.glow-effect:hover {
-			box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+			box-shadow: 0 0 20px var(--accent-glow-color);
 			transform: translateY(-2px);
 		}
 
@@ -33,48 +103,127 @@
 			font-weight: 700;
 			text-transform: uppercase;
 			tracking: 0.05em;
-			color: white;
-			border-left: 4px solid #10b981;
+			color: var(--text-primary);
+			border-left: 4px solid var(--accent-color);
 			padding-left: 0.75rem;
 			margin-top: 3rem;
 			margin-bottom: 1.5rem;
 		}
 
 		.markdown-content p.summary {
-			color: #94a3b8;
+			color: var(--text-secondary);
 			text-align: justify;
-			background: #131c2e;
+			background: var(--card-bg-color);
 			padding: 1.5rem;
 			border-radius: 0.75rem;
-			border: 1px solid rgba(51, 65, 85, 0.6);
+			border: 1px solid var(--border-color);
 			line-height: 1.625;
+		}
+
+		/* Background Dot Pattern */
+		.bg-dots {
+			background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+			background-size: 24px 24px;
+		}
+
+		.blob-1 { background-color: var(--blob1-color); }
+		.blob-2 { background-color: var(--blob2-color); }
+		.blob-3 { background-color: var(--blob3-color); }
+
+		/* Floating Blur Animation */
+		@keyframes blob-bounce {
+			0% {
+				transform: translate(0px, 0px) scale(1);
+			}
+			33% {
+				transform: translate(30px, -50px) scale(1.08);
+			}
+			66% {
+				transform: translate(-20px, 20px) scale(0.95);
+			}
+			100% {
+				transform: translate(0px, 0px) scale(1);
+			}
+		}
+
+		.animate-blob {
+			animation: blob-bounce 25s infinite alternate ease-in-out;
+		}
+
+		.animation-delay-2000 {
+			animation-delay: 2s;
+		}
+
+		.animation-delay-4000 {
+			animation-delay: 4s;
+		}
+
+		/* Theme Switcher Styles */
+		.theme-btn {
+			transition: all 0.2s ease-in-out;
+		}
+		.theme-btn:hover {
+			color: var(--text-primary);
+		}
+		.theme-btn.active {
+			color: var(--text-primary);
+			background-color: var(--badge-bg);
+			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+		}
+		.theme-btn.active i {
+			color: var(--accent-color);
 		}
 	</style>
 </head>
 
-<body class="bg-darkBg text-slate-200 antialiased selection:bg-emerald-500 selection:text-white">
+<body class="text-textPrimary antialiased selection:bg-accent selection:text-white relative min-h-screen transition-colors duration-300">
 
-	<div class="max-w-4xl mx-auto px-4 py-12 md:py-20">
+	<!-- Animated Background -->
+	<div class="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-darkBg transition-colors duration-300">
+		<div class="absolute w-[500px] h-[500px] rounded-full blob-1 blur-[120px] top-[-10%] left-[-10%] animate-blob"></div>
+		<div class="absolute w-[600px] h-[600px] rounded-full blob-2 blur-[130px] bottom-[-10%] right-[-10%] animate-blob animation-delay-2000"></div>
+		<div class="absolute w-[400px] h-[400px] rounded-full blob-3 blur-[100px] top-[30%] right-[10%] animate-blob animation-delay-4000"></div>
+		<div class="absolute inset-0 bg-dots opacity-60"></div>
+	</div>
+
+	<div class="max-w-4xl mx-auto px-4 py-12 md:py-20 relative z-10">
+
+		<!-- Top Bar / Theme Switcher -->
+		<div class="flex justify-end mb-8">
+			<div class="inline-flex bg-cardBg border border-borderColor p-1 rounded-full text-xs font-medium transition duration-300 shadow-sm">
+				<button onclick="setTheme('executive')" id="btn-theme-executive" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary">
+					<i class="fa-solid fa-gem"></i> <span class="hidden sm:inline">Executive</span>
+				</button>
+				<button onclick="setTheme('nordic')" id="btn-theme-nordic" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary">
+					<i class="fa-solid fa-feather"></i> <span class="hidden sm:inline">Nordic</span>
+				</button>
+				<button onclick="setTheme('cyber')" id="btn-theme-cyber" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary">
+					<i class="fa-solid fa-terminal"></i> <span class="hidden sm:inline">Cyber</span>
+				</button>
+			</div>
+		</div>
 
 		<!-- Header Section -->
 		<header
-			class="text-center md:text-left md:flex md:items-center md:justify-between border-b border-slate-800 pb-10">
+			class="text-center md:text-left md:flex md:items-center md:justify-between border-b border-borderColor pb-10">
 			<div>
-				<h1 class="text-4xl md:text-5xl font-black tracking-tight text-white uppercase">
+				<h1 class="text-4xl md:text-5xl font-black tracking-tight text-textPrimary uppercase">
 					{{ site.title }}
 				</h1>
-				<p class="text-lg md:text-xl font-semibold text-emerald-400 mt-2 tracking-wide">
+				<p class="text-lg md:text-xl font-semibold text-accent mt-2 tracking-wide">
 					{{ site.subtitle }}
 				</p>
-				<div class="flex flex-wrap justify-center md:justify-start gap-4 mt-5 text-sm text-slate-400">
-					<span><i class="fa-solid fa-location-dot text-emerald-400 mr-1"></i> {{ site.location }}</span>
-					<a href="mailto:{{ site.email }}" class="hover:text-white transition"><i
-							class="fa-solid fa-envelope text-emerald-400 mr-1"></i> {{ site.email }}</a>
+				<div class="flex flex-wrap justify-center md:justify-start gap-4 mt-5 text-sm text-textSecondary">
+					<span><i class="fa-solid fa-location-dot text-accent mr-1"></i> {{ site.location }}</span>
+					<a href="mailto:{{ site.email }}" class="hover:text-textPrimary transition"><i
+							class="fa-solid fa-envelope text-accent mr-1"></i> {{ site.email }}</a>
 					<a href="https://linkedin.com/in/{{ site.linkedin_username }}" target="_blank"
-						class="hover:text-white transition"><i class="fa-brands fa-linkedin text-emerald-400 mr-1"></i>
+						class="hover:text-textPrimary transition"><i class="fa-brands fa-linkedin text-accent mr-1"></i>
 						LinkedIn</a>
-					<a href="{{ site.personal_website }}" target="_blank" class="hover:text-white transition"><i
-							class="fa-solid fa-globe text-emerald-400 mr-1"></i> Website</a>
+					<a href="{{ site.personal_website }}" target="_blank" class="hover:text-textPrimary transition"><i
+							class="fa-solid fa-globe text-accent mr-1"></i> Website</a>
+					<a href="/assets/IBRAHIM_ALKAN_CV.pdf" target="_blank" class="hover:text-textPrimary transition"><i
+							class="fa-solid fa-file-pdf text-accent mr-1"></i> CV (PDF)</a>
 				</div>
 			</div>
 		</header>
@@ -84,62 +233,57 @@
 			{{ content }}
 		</main>
 
-		<!-- Featured Projects (Automated GitHub Fetch) -->
-		<section class="mt-12">
-			<h2 class="text-xl font-bold tracking-wider text-white uppercase border-l-4 border-emerald-500 pl-3 mb-6">
-				Featured Repositories
-			</h2>
-			<div id="github-projects" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-				<div class="bg-cardBg border border-slate-800/40 p-5 rounded-xl animate-pulse text-slate-500">Loading
-					open-source projects...</div>
-			</div>
-		</section>
-
-		<footer class="text-center text-xs text-slate-600 mt-16 pt-6 border-t border-slate-950">
+		<footer class="text-center text-xs text-textSecondary opacity-65 mt-16 pt-6 border-t border-borderColor">
 			&copy; 2026 {{ site.title }}. Powered by GitHub Pages & Jekyll.
 		</footer>
 
 	</div>
 
-	<!-- GitHub API Script -->
+	<!-- Theme Logic Script -->
 	<script>
-		const githubUsername = "{{ site.github_username }}";
-
-		async function fetchRepos() {
-			try {
-				const response = await fetch(`https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`);
-				const repos = await response.json();
-				const container = document.getElementById('github-projects');
-				container.innerHTML = '';
-
-				if (repos.message === "Not Found" || repos.length === 0) {
-					container.innerHTML = '<p class="text-sm text-slate-500 col-span-2">No public projects found.</p>';
-					return;
-				}
-
-				repos.forEach(repo => {
-					if (!repo.fork) {
-						const card = document.createElement('a');
-						card.href = repo.html_url;
-						card.target = "_blank";
-						card.className = "bg-cardBg border border-slate-800/40 p-5 rounded-xl glow-effect transition duration-300 block";
-						card.innerHTML = `
-                            <div class="flex justify-between items-start mb-2">
-                                <h4 class="text-white font-bold text-sm hover:text-emerald-400 transition">${repo.name}</h4>
-                                <span class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full font-mono"><i class="fa-solid fa-star mr-1"></i>${repo.stargazers_count}</span>
-                            </div>
-                            <p class="text-xs text-slate-400 line-clamp-2 h-8 mb-3">${repo.description || 'No description provided.'}</p>
-                            <div class="text-[11px] text-slate-500 font-mono">${repo.language || 'Mixed'}</div>
-                        `;
-						container.appendChild(card);
-					}
-				});
-			} catch (error) {
-				console.error("Error fetching GitHub repos:", error);
+		function setTheme(theme) {
+			const html = document.documentElement;
+			html.classList.remove('theme-nordic', 'theme-cyber');
+			
+			if (theme === 'nordic') {
+				html.classList.add('theme-nordic');
+			} else if (theme === 'cyber') {
+				html.classList.add('theme-cyber');
 			}
+			
+			localStorage.setItem('portfolio-theme', theme);
+			updateThemeButtons(theme);
 		}
-		fetchRepos();
+
+		function updateThemeButtons(theme) {
+			const btnExecutive = document.getElementById('btn-theme-executive');
+			const btnNordic = document.getElementById('btn-theme-nordic');
+			const btnCyber = document.getElementById('btn-theme-cyber');
+			
+			if (!btnExecutive || !btnNordic || !btnCyber) return;
+			
+			const buttons = [
+				{ el: btnExecutive, id: 'executive' },
+				{ el: btnNordic, id: 'nordic' },
+				{ el: btnCyber, id: 'cyber' }
+			];
+			
+			buttons.forEach(item => {
+				if (item.id === theme) {
+					item.el.classList.add('active');
+				} else {
+					item.el.classList.remove('active');
+				}
+			});
+		}
+
+		// Initialize button state on load
+		document.addEventListener('DOMContentLoaded', () => {
+			const savedTheme = localStorage.getItem('portfolio-theme') || 'executive';
+			updateThemeButtons(savedTheme);
+		});
 	</script>
+
 </body>
 
 </html>
