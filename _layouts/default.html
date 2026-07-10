@@ -5,7 +5,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>{{ site.title }} | {{ site.subtitle }}</title>
-	<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%23131c2e%22/><text x=%2250%25%22 y=%2258%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22system-ui, -apple-system, sans-serif%22 font-size=%2252%22 font-weight=%22900%22 fill=%22%2310b981%22>IA</text></svg>">
+	<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%231a1b1f%22/><text x=%2250%25%22 y=%2258%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 font-family=%22Georgia, serif%22 font-size=%2252%22 font-weight=%22bold%22 fill=%22%23c5a880%22>IA</text></svg>">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 	<script src="https://cdn.tailwindcss.com"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 	
@@ -35,273 +38,163 @@
 						textSecondary: 'var(--text-secondary)',
 						borderColor: 'var(--border-color)',
 						badgeBg: 'var(--badge-bg)',
+					},
+					fontFamily: {
+						serif: ['Lora', 'Georgia', 'serif'],
+						sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
 					}
 				}
 			}
 		}
 	</script>
 	<style>
-		/* Executive Theme CSS Variables (Default) */
+		/* Global resets for fonts and typography */
+		h1, h2, h3, h4, h5, h6, .font-serif {
+			font-family: 'Lora', Georgia, serif !important;
+		}
+		body, p, ul, li, span, button, a, .font-sans {
+			font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+		}
+
+		/* Canvas Background */
+		#bg-canvas {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			z-index: 0;
+			pointer-events: none;
+		}
+
+		/* Theme 1: Editorial Dark (Warm Graphite & Gold Accent) - Default */
 		:root {
-			--bg-color: #0b0f19;
-			--card-bg-color: #1e293b;
-			--text-primary: #f8fafc;
-			--text-secondary: #94a3b8;
-			--accent-color: #10b981;
-			--accent-hover-color: #059669;
-			--border-color: rgba(51, 65, 85, 0.4);
-			--badge-bg: rgba(30, 41, 59, 0.8);
-			--dot-color: rgba(255, 255, 255, 0.04);
-			--blob1-color: rgba(16, 185, 129, 0.1);
-			--blob2-color: rgba(37, 99, 235, 0.1);
-			--blob3-color: rgba(99, 102, 241, 0.05);
-			--accent-glow-color: rgba(16, 185, 129, 0.2);
+			--bg-color: #121316;
+			--card-bg-color: #1a1b1f;
+			--text-primary: #f4f4f3;
+			--text-secondary: #a0a0a5;
+			--accent-color: #c5a880; /* Warm Bronze/Gold */
+			--accent-hover-color: #b0936d;
+			--border-color: rgba(244, 244, 243, 0.08);
+			--badge-bg: rgba(197, 168, 128, 0.08);
 		}
 
-		/* Nordic Minimalist Theme CSS Variables */
+		/* Theme 2: Gallery Light (Warm Alabaster & Burgundy Accent) */
 		.theme-nordic {
-			--bg-color: #f8fafc;
+			--bg-color: #faf9f6;
 			--card-bg-color: #ffffff;
-			--text-primary: #0f172a;
-			--text-secondary: #64748b;
-			--accent-color: #2563eb;
-			--accent-hover-color: #1d4ed8;
-			--border-color: rgba(226, 232, 240, 0.8);
-			--badge-bg: rgba(241, 245, 249, 0.8);
-			--dot-color: rgba(15, 23, 42, 0.04);
-			--blob1-color: rgba(37, 99, 235, 0.06);
-			--blob2-color: rgba(99, 102, 241, 0.06);
-			--blob3-color: rgba(16, 185, 129, 0.03);
-			--accent-glow-color: rgba(37, 99, 235, 0.12);
+			--text-primary: #1c1c1e;
+			--text-secondary: #6e6e73;
+			--accent-color: #c05c46; /* Warm Terracotta/Burgundy */
+			--accent-hover-color: #a74b37;
+			--border-color: rgba(28, 28, 30, 0.08);
+			--badge-bg: rgba(192, 92, 70, 0.08);
 		}
 
-		/* Cyber Zinc Theme CSS Variables */
+		/* Theme 3: Slate Monochrome (Ink Black & Cool Silver Accent) */
 		.theme-cyber {
-			--bg-color: #09090b;
-			--card-bg-color: #18181b;
-			--text-primary: #fafafa;
-			--text-secondary: #a1a1aa;
-			--accent-color: #06b6d4;
-			--accent-hover-color: #0891b2;
-			--border-color: rgba(39, 39, 42, 0.5);
-			--badge-bg: rgba(24, 24, 27, 0.8);
-			--dot-color: rgba(255, 255, 255, 0.03);
-			--blob1-color: rgba(6, 182, 212, 0.08);
-			--blob2-color: rgba(99, 102, 241, 0.08);
-			--blob3-color: rgba(236, 72, 153, 0.04);
-			--accent-glow-color: rgba(6, 182, 212, 0.2);
+			--bg-color: #0b0c0e;
+			--card-bg-color: #131417;
+			--text-primary: #f2f2f3;
+			--text-secondary: #8e939e;
+			--accent-color: #d1d5db; /* Warm Cool Silver */
+			--accent-hover-color: #e5e7eb;
+			--border-color: rgba(242, 242, 243, 0.06);
+			--badge-bg: rgba(255, 255, 255, 0.06);
 		}
 
-		.glow-effect:hover {
-			box-shadow: 0 0 20px var(--accent-glow-color);
-			transform: translateY(-2px);
+		/* Hidden Arcade Theme (Unlocked via gamepad or Konami Code) */
+		.theme-arcade {
+			--bg-color: #050505;
+			--card-bg-color: #0c0c0c;
+			--text-primary: #39ff14 !important; /* Retro Terminal Green */
+			--text-secondary: rgba(57, 255, 20, 0.7) !important;
+			--accent-color: #ff007f !important; /* Cyber Pink */
+			--accent-hover-color: #e60072;
+			--border-color: rgba(57, 255, 20, 0.2);
+			--badge-bg: rgba(57, 255, 20, 0.05);
 		}
 
-		/* Custom styles for rendered markdown content */
+		/* Phosphor scanline overlay for Arcade Theme */
+		.theme-arcade::after {
+			content: " ";
+			display: block;
+			position: fixed;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+			z-index: 9999;
+			background-size: 100% 4px, 6px 100%;
+			pointer-events: none;
+		}
+
+		/* Phosphor text shadow glow for Arcade Theme */
+		.theme-arcade, 
+		.theme-arcade h1, 
+		.theme-arcade h2, 
+		.theme-arcade h3, 
+		.theme-arcade h4, 
+		.theme-arcade h5, 
+		.theme-arcade h6, 
+		.theme-arcade p, 
+		.theme-arcade span, 
+		.theme-arcade li, 
+		.theme-arcade a, 
+		.theme-arcade button,
+		.theme-arcade footer {
+			font-family: 'Courier New', Courier, monospace !important;
+			text-shadow: 0 0 4px rgba(57, 255, 20, 0.5) !important;
+		}
+
+		/* Custom styles for rendered markdown content (Editorial theme overrides) */
 		.markdown-content h2 {
-			font-size: 1.25rem;
-			font-weight: 700;
-			text-transform: uppercase;
-			tracking: 0.05em;
+			font-family: 'Lora', Georgia, serif !important;
+			font-size: 1.5rem;
+			font-weight: 600;
 			color: var(--text-primary);
-			border-left: 4px solid var(--accent-color);
-			padding-left: 0.75rem;
-			margin-top: 3rem;
-			margin-bottom: 1.5rem;
+			border-bottom: 1px solid var(--border-color);
+			padding-bottom: 0.625rem;
+			margin-top: 3.5rem;
+			margin-bottom: 1.75rem;
+			letter-spacing: -0.01em;
 		}
 
 		.markdown-content p.summary {
-			color: var(--text-secondary);
-			text-align: justify;
-			background: var(--card-bg-color);
-			padding: 1.5rem;
-			border-radius: 0.75rem;
-			border: 1px solid var(--border-color);
-			line-height: 1.625;
+			font-family: 'Lora', Georgia, serif !important;
+			font-size: 1.125rem;
+			font-style: italic;
+			color: var(--text-primary);
+			background: transparent !important;
+			border: none !important;
+			padding: 0 !important;
+			margin-bottom: 2.5rem;
+			line-height: 1.8;
+			text-align: left !important;
 		}
 
-		/* Background Dot Pattern */
-		.bg-dots {
-			background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
-			background-size: 24px 24px;
-		}
-
-		.blob-1 { background-color: var(--blob1-color); }
-		.blob-2 { background-color: var(--blob2-color); }
-		.blob-3 { background-color: var(--blob3-color); }
-
-		/* Liquid Morphing GPU-Accelerated Animations (Executive Emerald Theme) */
-		@keyframes morph-blob-1 {
-			0% {
-				border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-				transform: translate3d(0px, 0px, 0) scale(1) rotate(0deg);
-			}
-			33% {
-				border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
-				transform: translate3d(60px, -80px, 0) scale(1.12) rotate(120deg);
-			}
-			66% {
-				border-radius: 30% 70% 40% 60% / 50% 60% 40% 50%;
-				transform: translate3d(-40px, 40px, 0) scale(0.92) rotate(240deg);
-			}
-			100% {
-				border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-				transform: translate3d(0px, 0px, 0) scale(1) rotate(360deg);
-			}
-		}
-
-		@keyframes morph-blob-2 {
-			0% {
-				border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
-				transform: translate3d(0px, 0px, 0) scale(1) rotate(0deg);
-			}
-			33% {
-				border-radius: 30% 70% 40% 60% / 50% 60% 40% 50%;
-				transform: translate3d(-70px, 50px, 0) scale(0.9) rotate(-120deg);
-			}
-			66% {
-				border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
-				transform: translate3d(40px, -40px, 0) scale(1.1) rotate(-240deg);
-			}
-			100% {
-				border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
-				transform: translate3d(0px, 0px, 0) scale(1) rotate(-360deg);
-			}
-		}
-
-		@keyframes morph-blob-3 {
-			0% {
-				border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-				transform: translate3d(0px, 0px, 0) scale(1);
-			}
-			50% {
-				border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
-				transform: translate3d(30px, 50px, 0) scale(1.15);
-			}
-			100% {
-				border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-				transform: translate3d(0px, 0px, 0) scale(1);
-			}
-		}
-
-		/* Gentle Breathing Animation (Nordic Minimalist Theme) */
-		@keyframes soft-pulse {
-			0% {
-				transform: translate3d(0px, 0px, 0) scale(1);
-				opacity: 0.35;
-			}
-			100% {
-				transform: translate3d(30px, -30px, 0) scale(1.1);
-				opacity: 0.65;
-			}
-		}
-
-		/* Sharp Tech Pulse Animations (Cyber Zinc Theme) */
-		@keyframes cyber-pulse-1 {
-			0% {
-				transform: translate3d(0px, 0px, 0) scale(1);
-				filter: blur(120px) brightness(1);
-			}
-			50% {
-				transform: translate3d(60px, -30px, 0) scale(1.2);
-				filter: blur(100px) brightness(1.25);
-			}
-			100% {
-				transform: translate3d(0px, 0px, 0) scale(1);
-				filter: blur(120px) brightness(1);
-			}
-		}
-
-		@keyframes cyber-pulse-2 {
-			0% {
-				transform: translate3d(0px, 0px, 0) scale(1.15);
-			}
-			50% {
-				transform: translate3d(-40px, 50px, 0) scale(0.95);
-			}
-			100% {
-				transform: translate3d(0px, 0px, 0) scale(1.15);
-			}
-		}
-
-		/* Downward Digital Scan Grid Animation (Cyber Zinc Theme) */
-		@keyframes grid-scroll-down {
-			0% {
-				background-position: 0 0;
-			}
-			100% {
-				background-position: 0 24px;
-			}
-		}
-
-		/* Default / Executive Theme Anim bindings */
-		.animate-blob-1 {
-			animation: morph-blob-1 25s infinite alternate ease-in-out;
-		}
-		.animate-blob-2 {
-			animation: morph-blob-2 30s infinite alternate ease-in-out;
-		}
-		.animate-blob-3 {
-			animation: morph-blob-3 20s infinite alternate ease-in-out;
-		}
-
-		/* Nordic theme overrides: Gentle corner pulses, hide 3rd blob */
-		.theme-nordic .animate-blob-1 {
-			animation: soft-pulse 15s infinite alternate ease-in-out;
-			border-radius: 50%;
-		}
-		.theme-nordic .animate-blob-2 {
-			animation: soft-pulse 18s infinite alternate-reverse ease-in-out;
-			border-radius: 50%;
-		}
-		.theme-nordic .animate-blob-3 {
-			display: none;
-		}
-
-		/* Cyber theme overrides: Scanning scrolling dots, fast digital pulses */
-		.theme-cyber .bg-dots {
-			animation: grid-scroll-down 4s linear infinite;
-		}
-		.theme-cyber .animate-blob-1 {
-			animation: cyber-pulse-1 12s infinite ease-in-out;
-			border-radius: 50%;
-		}
-		.theme-cyber .animate-blob-2 {
-			animation: cyber-pulse-2 15s infinite ease-in-out;
-			border-radius: 50%;
-		}
-		.theme-cyber .animate-blob-3 {
-			animation: cyber-pulse-1 18s infinite reverse ease-in-out;
-			border-radius: 50%;
-		}
-
-		/* Theme Switcher Styles */
+		/* Theme Switcher Style overrides */
 		.theme-btn {
-			transition: all 0.2s ease-in-out;
+			transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+			opacity: 0.6;
 		}
 		.theme-btn:hover {
+			opacity: 1;
 			color: var(--text-primary);
 		}
 		.theme-btn.active {
-			color: var(--text-primary);
-			background-color: var(--badge-bg);
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-		}
-		.theme-btn.active i {
+			opacity: 1;
 			color: var(--accent-color);
+			background-color: var(--badge-bg);
 		}
 	</style>
 </head>
 
-<body class="text-textPrimary antialiased selection:bg-accent selection:text-white relative min-h-screen transition-colors duration-300">
+<body class="text-textPrimary bg-darkBg antialiased selection:bg-accent selection:text-white relative min-h-screen transition-colors duration-300">
 
-	<!-- Animated Background -->
-	<div class="fixed inset-0 pointer-events-none overflow-hidden z-0 bg-darkBg transition-colors duration-300">
-		<div class="absolute w-[500px] h-[500px] rounded-full blob-1 blur-[120px] top-[-10%] left-[-10%] animate-blob-1"></div>
-		<div class="absolute w-[600px] h-[600px] rounded-full blob-2 blur-[130px] bottom-[-10%] right-[-10%] animate-blob-2"></div>
-		<div class="absolute w-[400px] h-[400px] rounded-full blob-3 blur-[100px] top-[30%] right-[10%] animate-blob-3"></div>
-		<div class="absolute inset-0 bg-dots opacity-60"></div>
-	</div>
+	<!-- Canvas Background -->
+	<canvas id="bg-canvas"></canvas>
 
 	<div class="max-w-6xl mx-auto px-4 py-12 md:py-20 relative z-10">
 
@@ -317,6 +210,9 @@
 				<button onclick="setTheme('cyber')" id="btn-theme-cyber" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary">
 					<i class="fa-solid fa-terminal"></i> <span class="hidden sm:inline">Cyber</span>
 				</button>
+				<button onclick="activateArcadeMode()" id="btn-theme-arcade" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary" title="Unlock retro game easter egg!">
+					<i class="fa-solid fa-gamepad text-[#ff007f]"></i> <span class="hidden sm:inline text-xs">Arcade</span>
+				</button>
 			</div>
 		</div>
 
@@ -324,10 +220,10 @@
 		<header
 			class="text-center md:text-left md:flex md:items-center md:justify-between border-b border-borderColor pb-10">
 			<div>
-				<h1 class="text-4xl md:text-5xl font-black tracking-tight text-textPrimary uppercase">
+				<h1 class="text-4xl md:text-5xl font-serif font-bold tracking-tight text-textPrimary">
 					{{ site.title }}
 				</h1>
-				<p class="text-lg md:text-xl font-semibold text-accent mt-2 tracking-wide">
+				<p class="text-lg md:text-xl font-sans font-medium text-accent mt-2">
 					{{ site.subtitle }}
 				</p>
 				<div class="flex flex-wrap justify-center md:justify-start gap-4 mt-5 text-sm text-textSecondary">
@@ -356,27 +252,286 @@
 
 	</div>
 
+	<!-- Game Modal -->
+	<div id="game-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center hidden">
+		<div class="bg-[#050505] border-2 border-[#39ff14] p-6 rounded-lg max-w-md w-full text-center relative shadow-[0_0_30px_rgba(57,255,20,0.3)]">
+			<button onclick="closeGame()" class="absolute top-2 right-3 text-[#39ff14] hover:text-white text-2xl font-mono">×</button>
+			<h2 class="text-xl font-bold text-[#39ff14] mb-2 animate-pulse font-mono">👾 DEV DEFENDER Arcade 👾</h2>
+			<p class="text-[10px] text-[#39ff14]/75 mb-4 font-mono">Left/Right or A/D to move, Space to shoot. Destroy the dev bugs!</p>
+			
+			<canvas id="game-canvas" width="400" height="400" class="border border-[#39ff14]/30 bg-black mx-auto mb-4 rounded"></canvas>
+			
+			<div class="flex justify-between text-[#39ff14] text-xs px-2 mb-4 font-mono">
+				<span>SCORE: <span id="game-score">0</span></span>
+				<span>LIVES: <span id="game-lives">3</span></span>
+			</div>
+			
+			<button onclick="startGame()" id="btn-start-game" class="bg-[#39ff14] text-black px-6 py-2 rounded text-sm font-bold hover:bg-[#39ff14]/80 transition font-mono">START GAME</button>
+		</div>
+	</div>
+
 	<!-- Theme Logic Script -->
 	<script>
+		// Web Audio API Sound Synthesizer
+		let audioCtx = null;
+		function playSound(type) {
+			try {
+				if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+				if (audioCtx.state === 'suspended') audioCtx.resume();
+				const osc = audioCtx.createOscillator();
+				const gain = audioCtx.createGain();
+				osc.connect(gain);
+				gain.connect(audioCtx.destination);
+				
+				if (type === 'laser') {
+					osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+					osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.12);
+					gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+					gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.12);
+					osc.start();
+					osc.stop(audioCtx.currentTime + 0.12);
+				} else if (type === 'explosion') {
+					osc.frequency.setValueAtTime(120, audioCtx.currentTime);
+					osc.frequency.exponentialRampToValueAtTime(20, audioCtx.currentTime + 0.25);
+					gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+					gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+					osc.start();
+					osc.stop(audioCtx.currentTime + 0.25);
+				} else if (type === 'success') {
+					osc.frequency.setValueAtTime(440, audioCtx.currentTime);
+					osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
+					gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+					gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+					osc.start();
+					osc.stop(audioCtx.currentTime + 0.25);
+				}
+			} catch (err) {
+				console.log("Audio failed to play", err);
+			}
+		}
+
+		// Canvas Background Renderer Class
+		class CanvasBackground {
+			constructor() {
+				this.canvas = document.getElementById('bg-canvas');
+				if (!this.canvas) return;
+				this.ctx = this.canvas.getContext('2d');
+				this.theme = 'executive';
+				this.particles = [];
+				this.gridOffset = 0;
+				
+				window.addEventListener('resize', () => this.resize());
+				this.resize();
+				this.animate();
+			}
+			
+			resize() {
+				this.width = this.canvas.width = window.innerWidth;
+				this.height = this.canvas.height = window.innerHeight;
+				this.initTheme(this.theme);
+			}
+			
+			initTheme(theme) {
+				this.theme = theme;
+				this.particles = [];
+				this.gridOffset = 0;
+				
+				if (theme === 'executive') {
+					// Starfield Nebula particles (Warm gold theme)
+					for (let i = 0; i < 90; i++) {
+						this.particles.push({
+							x: Math.random() * this.width,
+							y: Math.random() * this.height,
+							z: Math.random() * this.width,
+							size: Math.random() * 1.5 + 0.5,
+							speed: Math.random() * 0.4 + 0.15
+						});
+					}
+				} else if (theme === 'nordic') {
+					// Minimalist constellation nodes
+					const count = Math.min(35, Math.floor((this.width * this.height) / 32000));
+					for (let i = 0; i < count; i++) {
+						this.particles.push({
+							x: Math.random() * this.width,
+							y: Math.random() * this.height,
+							vx: (Math.random() - 0.5) * 0.35,
+							vy: (Math.random() - 0.5) * 0.35,
+							size: Math.random() * 3 + 1
+						});
+					}
+				} else if (theme === 'arcade') {
+					// Phosphor rain
+					const columns = Math.floor(this.width / 24);
+					for (let i = 0; i < columns; i++) {
+						this.particles.push({
+							x: i * 24,
+							y: Math.random() * -this.height,
+							speed: Math.random() * 3.5 + 1.5,
+							chars: Array.from({length: 12}, () => String.fromCharCode(0x30A0 + Math.random() * 96))
+						});
+					}
+				}
+			}
+			
+			animate() {
+				requestAnimationFrame(() => this.animate());
+				this.ctx.clearRect(0, 0, this.width, this.height);
+				
+				if (this.theme === 'executive') {
+					this.drawStarfield();
+				} else if (this.theme === 'nordic') {
+					this.drawConstellation();
+				} else if (this.theme === 'cyber') {
+					this.drawCyberGrid();
+				} else if (this.theme === 'arcade') {
+					this.drawMatrixRain();
+				}
+			}
+			
+			drawStarfield() {
+				this.ctx.fillStyle = '#121316';
+				this.ctx.fillRect(0, 0, this.width, this.height);
+				
+				this.ctx.fillStyle = 'rgba(197, 168, 128, 0.45)'; // Warm Gold Accent
+				this.particles.forEach(p => {
+					p.z -= p.speed * 2.2;
+					if (p.z <= 0) {
+						p.z = this.width;
+						p.x = Math.random() * this.width;
+						p.y = Math.random() * this.height;
+					}
+					
+					const k = 120.0 / p.z;
+					const px = (p.x - this.width / 2) * k + this.width / 2;
+					const py = (p.y - this.height / 2) * k + this.height / 2;
+					
+					if (px >= 0 && px <= this.width && py >= 0 && py <= this.height) {
+						const size = (1 - p.z / this.width) * 3;
+						this.ctx.beginPath();
+						this.ctx.arc(px, py, size, 0, Math.PI * 2);
+						this.ctx.fill();
+					}
+				});
+			}
+			
+			drawConstellation() {
+				this.ctx.fillStyle = '#faf9f6';
+				this.ctx.fillRect(0, 0, this.width, this.height);
+				
+				this.ctx.fillStyle = 'rgba(192, 92, 70, 0.25)'; // Burgundy
+				this.ctx.strokeStyle = 'rgba(192, 92, 70, 0.08)';
+				this.ctx.lineWidth = 1;
+				
+				const count = this.particles.length;
+				for (let i = 0; i < count; i++) {
+					const p = this.particles[i];
+					p.x += p.vx;
+					p.y += p.vy;
+					
+					if (p.x < 0 || p.x > this.width) p.vx *= -1;
+					if (p.y < 0 || p.y > this.height) p.vy *= -1;
+					
+					this.ctx.beginPath();
+					this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+					this.ctx.fill();
+					
+					for (let j = i + 1; j < count; j++) {
+						const p2 = this.particles[j];
+						const dx = p.x - p2.x;
+						const dy = p.y - p2.y;
+						const dist = Math.sqrt(dx*dx + dy*dy);
+						if (dist < 140) {
+							this.ctx.beginPath();
+							this.ctx.moveTo(p.x, p.y);
+							this.ctx.lineTo(p2.x, p2.y);
+							this.ctx.stroke();
+						}
+					}
+				}
+			}
+			
+			drawCyberGrid() {
+				this.ctx.fillStyle = '#0b0c0e';
+				this.ctx.fillRect(0, 0, this.width, this.height);
+				
+				this.ctx.strokeStyle = 'rgba(209, 213, 219, 0.035)'; // Silver Grid
+				this.ctx.lineWidth = 1;
+				
+				const horizon = this.height * 0.4;
+				const spacing = 45;
+				
+				this.gridOffset = (this.gridOffset + 0.8) % spacing;
+				
+				for (let y = horizon; y < this.height; y += spacing) {
+					const ratio = (y - horizon) / (this.height - horizon);
+					const py = horizon + ratio * ratio * (this.height - horizon) + this.gridOffset * ratio;
+					if (py > horizon && py < this.height) {
+						this.ctx.beginPath();
+						this.ctx.moveTo(0, py);
+						this.ctx.lineTo(this.width, py);
+						this.ctx.stroke();
+					}
+				}
+				
+				const centerX = this.width / 2;
+				const count = 30;
+				for (let i = -count; i <= count; i++) {
+					const sx = centerX + i * spacing * 2.6;
+					this.ctx.beginPath();
+					this.ctx.moveTo(centerX, horizon);
+					this.ctx.lineTo(sx, this.height);
+					this.ctx.stroke();
+				}
+			}
+			
+			drawMatrixRain() {
+				this.ctx.fillStyle = 'rgba(5, 5, 5, 0.16)'; // CRT phosphorescent trail
+				this.ctx.fillRect(0, 0, this.width, this.height);
+				
+				this.ctx.fillStyle = '#39ff14'; // matrix green
+				this.ctx.font = '14px monospace';
+				
+				this.particles.forEach(p => {
+					const char = p.chars[Math.floor(Math.random() * p.chars.length)];
+					this.ctx.fillText(char, p.x, p.y);
+					
+					p.y += p.speed;
+					if (p.y > this.height) {
+						p.y = -40;
+						p.speed = Math.random() * 3 + 1.5;
+					}
+				});
+			}
+		}
+
+		let bgAnimation = null;
+
 		function setTheme(theme) {
 			const html = document.documentElement;
-			html.classList.remove('theme-nordic', 'theme-cyber');
+			html.classList.remove('theme-nordic', 'theme-cyber', 'theme-arcade');
 			
 			if (theme === 'nordic') {
 				html.classList.add('theme-nordic');
 			} else if (theme === 'cyber') {
 				html.classList.add('theme-cyber');
+			} else if (theme === 'arcade') {
+				html.classList.add('theme-arcade');
 			}
 			
 			localStorage.setItem('portfolio-theme', theme);
 			updateThemeButtons(theme);
 			updateWidgets(theme);
+			
+			if (bgAnimation) {
+				bgAnimation.initTheme(theme);
+			}
 		}
 
 		function updateThemeButtons(theme) {
 			const btnExecutive = document.getElementById('btn-theme-executive');
 			const btnNordic = document.getElementById('btn-theme-nordic');
 			const btnCyber = document.getElementById('btn-theme-cyber');
+			const btnArcade = document.getElementById('btn-theme-arcade');
 			
 			if (!btnExecutive || !btnNordic || !btnCyber) return;
 			
@@ -385,6 +540,7 @@
 				{ el: btnNordic, id: 'nordic' },
 				{ el: btnCyber, id: 'cyber' }
 			];
+			if (btnArcade) buttons.push({ el: btnArcade, id: 'arcade' });
 			
 			buttons.forEach(item => {
 				if (item.id === theme) {
@@ -401,25 +557,242 @@
 			if (!githubImg || !dailyImg) return;
 			
 			if (theme === 'nordic') {
-				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=ffffff&title_color=2563eb&text_color=64748b&icon_color=2563eb&show_icons=true";
+				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=faf9f6&title_color=c05c46&text_color=6e6e73&icon_color=c05c46&show_icons=true";
 				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=light";
 			} else if (theme === 'cyber') {
-				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=18181b&title_color=06b6d4&text_color=a1a1aa&icon_color=06b6d4&show_icons=true";
+				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=131417&title_color=d1d5db&text_color=8e939e&icon_color=d1d5db&show_icons=true";
+				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=dark";
+			} else if (theme === 'arcade') {
+				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=0c0c0c&title_color=39ff14&text_color=39ff14&icon_color=ff007f&show_icons=true";
 				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=dark";
 			} else { // executive (default)
-				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=1e293b&title_color=10b981&text_color=94a3b8&icon_color=10b981&show_icons=true";
+				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=1a1b1f&title_color=c5a880&text_color=a0a0a5&icon_color=c5a880&show_icons=true";
 				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=dark";
 			}
 		}
 
-		// Initialize button state and widgets on load
+		// Konami Code Easter Egg
+		const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+		let konamiIndex = 0;
+		document.addEventListener('keydown', (e) => {
+			if (e.key === konamiCode[konamiIndex]) {
+				konamiIndex++;
+				if (konamiIndex === konamiCode.length) {
+					activateArcadeMode();
+					konamiIndex = 0;
+				}
+			} else {
+				konamiIndex = 0;
+			}
+		});
+
+		function activateArcadeMode() {
+			setTheme('arcade');
+			playSound('success');
+			
+			// Show Game Modal
+			const modal = document.getElementById('game-modal');
+			if (modal) modal.classList.remove('hidden');
+			
+			// Log in browser developer tool
+			console.log("%c👾 SYSTEM OVERWRITE: DEV DEFENDER UNLOCKED! 👾", "color: #39ff14; font-size: 16px; font-weight: bold; text-shadow: 0 0 5px #39ff14");
+		}
+
+		// Arcade Defender Game Logic
+		let gameCanvas, gameCtx;
+		let gameInterval = null;
+		let gameScore = 0;
+		let gameLives = 3;
+		let player = { x: 190, y: 370, w: 20, h: 20, speed: 5 };
+		let bullets = [];
+		let enemies = [];
+		let keys = {};
+		let bugWords = ['BUG', 'WARN', 'CRASH', 'MERGE', 'NULL', 'DEP'];
+
+		document.addEventListener('keydown', (e) => { keys[e.key] = true; });
+		document.addEventListener('keyup', (e) => { keys[e.key] = false; });
+
+		function closeGame() {
+			const modal = document.getElementById('game-modal');
+			if (modal) modal.classList.add('hidden');
+			if (gameInterval) {
+				clearInterval(gameInterval);
+				gameInterval = null;
+			}
+		}
+
+		function startGame() {
+			gameCanvas = document.getElementById('game-canvas');
+			if (!gameCanvas) return;
+			gameCtx = gameCanvas.getContext('2d');
+			
+			// Reset stats
+			gameScore = 0;
+			gameLives = 3;
+			bullets = [];
+			enemies = [];
+			player.x = gameCanvas.width / 2 - 10;
+			
+			document.getElementById('game-score').innerText = gameScore;
+			document.getElementById('game-lives').innerText = gameLives;
+			document.getElementById('btn-start-game').innerText = "RESTART";
+			
+			if (gameInterval) clearInterval(gameInterval);
+			
+			gameInterval = setInterval(gameLoop, 1000 / 60); // 60 FPS loop
+			playSound('success');
+		}
+
+		function gameLoop() {
+			updateGame();
+			drawGame();
+		}
+
+		function updateGame() {
+			// Player movement
+			if (keys['ArrowLeft'] || keys['a']) {
+				player.x = Math.max(0, player.x - player.speed);
+			}
+			if (keys['ArrowRight'] || keys['d']) {
+				player.x = Math.min(gameCanvas.width - player.w, player.x + player.speed);
+			}
+			
+			// Shoot bullet
+			if (keys[' '] || keys['Spacebar']) {
+				// Throttle shooting
+				if (bullets.length === 0 || bullets[bullets.length - 1].y < player.y - 120) {
+					bullets.push({ x: player.x + player.w/2 - 2, y: player.y, w: 4, h: 10 });
+					playSound('laser');
+				}
+				keys[' '] = false; // fire once per keydown tap
+			}
+			
+			// Update bullets
+			bullets.forEach((b, index) => {
+				b.y -= 7;
+				if (b.y < 0) bullets.splice(index, 1);
+			});
+			
+			// Spawn enemies
+			if (Math.random() < 0.02) {
+				const text = bugWords[Math.floor(Math.random() * bugWords.length)];
+				enemies.push({
+					x: Math.random() * (gameCanvas.width - 60) + 10,
+					y: -10,
+					w: 50,
+					h: 15,
+					text: text,
+					speed: Math.random() * 1.2 + 0.8 + (gameScore * 0.05)
+				});
+			}
+			
+			// Update enemies
+			enemies.forEach((e, idx) => {
+				e.y += e.speed;
+				
+				// Reaches bottom
+				if (e.y > gameCanvas.height) {
+					enemies.splice(idx, 1);
+					gameLives--;
+					document.getElementById('game-lives').innerText = gameLives;
+					playSound('explosion');
+					if (gameLives <= 0) gameOver();
+				}
+				
+				// Hit player
+				if (e.x < player.x + player.w && e.x + e.w > player.x && e.y < player.y + player.h && e.y + e.h > player.y) {
+					enemies.splice(idx, 1);
+					gameLives--;
+					document.getElementById('game-lives').innerText = gameLives;
+					playSound('explosion');
+					if (gameLives <= 0) gameOver();
+				}
+			});
+			
+			// Bullet vs Enemy Collision
+			bullets.forEach((b, bIdx) => {
+				enemies.forEach((e, eIdx) => {
+					if (b.x < e.x + e.w && b.x + b.w > e.x && b.y < e.y + e.h && b.y + b.h > e.y) {
+						bullets.splice(bIdx, 1);
+						enemies.splice(eIdx, 1);
+						gameScore += 10;
+						document.getElementById('game-score').innerText = gameScore;
+						playSound('explosion');
+					}
+				});
+			});
+		}
+
+		function drawGame() {
+			// Clear canvas
+			gameCtx.fillStyle = '#000000';
+			gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+			
+			// Draw simple CRT lines
+			gameCtx.strokeStyle = 'rgba(57, 255, 20, 0.05)';
+			gameCtx.lineWidth = 1;
+			for (let i = 0; i < gameCanvas.height; i += 6) {
+				gameCtx.beginPath();
+				gameCtx.moveTo(0, i);
+				gameCtx.lineTo(gameCanvas.width, i);
+				gameCtx.stroke();
+			}
+			
+			// Draw player
+			gameCtx.fillStyle = '#39ff14'; // Green spaceship
+			gameCtx.beginPath();
+			gameCtx.moveTo(player.x + player.w/2, player.y);
+			gameCtx.lineTo(player.x, player.y + player.h);
+			gameCtx.lineTo(player.x + player.w, player.y + player.h);
+			gameCtx.closePath();
+			gameCtx.fill();
+			
+			// Draw bullets
+			gameCtx.fillStyle = '#ff007f'; // Pink lasers
+			bullets.forEach(b => {
+				gameCtx.fillRect(b.x, b.y, b.w, b.h);
+			});
+			
+			// Draw enemies (text strings)
+			gameCtx.font = '12px Courier New';
+			enemies.forEach(e => {
+				// draw glowing border box
+				gameCtx.strokeStyle = '#39ff14';
+				gameCtx.strokeRect(e.x, e.y, e.w, e.h);
+				// text inside
+				gameCtx.fillStyle = '#39ff14';
+				gameCtx.fillText(e.text, e.x + 6, e.y + 11);
+			});
+		}
+
+		function gameOver() {
+			clearInterval(gameInterval);
+			gameInterval = null;
+			
+			gameCtx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+			gameCtx.fillRect(0, 0, gameCanvas.width, gameCanvas.height);
+			
+			gameCtx.fillStyle = '#ff007f';
+			gameCtx.font = '24px Courier New';
+			gameCtx.textAlign = 'center';
+			gameCtx.fillText("GAME OVER", gameCanvas.width/2, gameCanvas.height/2 - 10);
+			
+			gameCtx.fillStyle = '#39ff14';
+			gameCtx.font = '14px Courier New';
+			gameCtx.fillText(`FINAL SCORE: ${gameScore}`, gameCanvas.width/2, gameCanvas.height/2 + 20);
+			
+			document.getElementById('btn-start-game').innerText = "PLAY AGAIN";
+		}
+
+		// Initialize state and backgrounds on DOM load
 		document.addEventListener('DOMContentLoaded', () => {
+			bgAnimation = new CanvasBackground();
 			const savedTheme = localStorage.getItem('portfolio-theme') || 'executive';
-			updateThemeButtons(savedTheme);
-			updateWidgets(savedTheme);
+			setTheme(savedTheme);
+			
+			// Display cheat code hint in console
+			console.log("%c🎮 Unlocking the secret gaming mode: Type the classic Konami Code (↑↑↓↓←→←→ba) on your keyboard! Or click the controller button in the theme selector.", "color: #ff007f; font-weight: bold; font-family: sans-serif");
 		});
 	</script>
-
 </body>
-
 </html>
