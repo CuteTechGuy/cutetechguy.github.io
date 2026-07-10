@@ -1,0 +1,11 @@
+title: İBRAHİM ALKAN
+subtitle: Engineering Manager & Technical Leader
+email: mail@ibrahimalkan.com
+location: İzmir, Turkey
+linkedin_username: ibrahim-alkan
+github_username: CuteTechGuy
+personal_website: http://www.ibrahimalkan.com
+
+# Jekyll Settings
+theme: jekyll-theme-primer # GitHub Pages varsayılan temalarından biri altyapı için seçildi
+permalink: /:title/
