@@ -130,67 +130,70 @@
 		.blob-2 { background-color: var(--blob2-color); }
 		.blob-3 { background-color: var(--blob3-color); }
 
-		/* Organic GPU-Accelerated Floating Blur Animations */
-		@keyframes blob-bounce-1 {
+		/* Liquid Morphing GPU-Accelerated Animations */
+		@keyframes morph-blob-1 {
 			0% {
+				border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
 				transform: translate3d(0px, 0px, 0) scale(1) rotate(0deg);
 			}
 			33% {
-				transform: translate3d(40px, -60px, 0) scale(1.1) rotate(120deg);
+				border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
+				transform: translate3d(60px, -80px, 0) scale(1.12) rotate(120deg);
 			}
 			66% {
-				transform: translate3d(-20px, 30px, 0) scale(0.9) rotate(240deg);
+				border-radius: 30% 70% 40% 60% / 50% 60% 40% 50%;
+				transform: translate3d(-40px, 40px, 0) scale(0.92) rotate(240deg);
 			}
 			100% {
+				border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
 				transform: translate3d(0px, 0px, 0) scale(1) rotate(360deg);
 			}
 		}
 
-		@keyframes blob-bounce-2 {
+		@keyframes morph-blob-2 {
 			0% {
+				border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
 				transform: translate3d(0px, 0px, 0) scale(1) rotate(0deg);
 			}
 			33% {
-				transform: translate3d(-50px, 40px, 0) scale(0.95) rotate(-120deg);
+				border-radius: 30% 70% 40% 60% / 50% 60% 40% 50%;
+				transform: translate3d(-70px, 50px, 0) scale(0.9) rotate(-120deg);
 			}
 			66% {
-				transform: translate3d(30px, -30px, 0) scale(1.08) rotate(-240deg);
+				border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+				transform: translate3d(40px, -40px, 0) scale(1.1) rotate(-240deg);
 			}
 			100% {
+				border-radius: 70% 30% 52% 48% / 60% 40% 60% 40%;
 				transform: translate3d(0px, 0px, 0) scale(1) rotate(-360deg);
 			}
 		}
 
-		@keyframes blob-bounce-3 {
+		@keyframes morph-blob-3 {
 			0% {
+				border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
 				transform: translate3d(0px, 0px, 0) scale(1);
 			}
 			50% {
-				transform: translate3d(20px, 40px, 0) scale(1.15);
+				border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
+				transform: translate3d(30px, 50px, 0) scale(1.15);
 			}
 			100% {
+				border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
 				transform: translate3d(0px, 0px, 0) scale(1);
 			}
 		}
 
 		.animate-blob-1 {
-			animation: blob-bounce-1 25s infinite alternate ease-in-out;
+			animation: morph-blob-1 25s infinite alternate ease-in-out;
 		}
 
 		.animate-blob-2 {
-			animation: blob-bounce-2 30s infinite alternate ease-in-out;
+			animation: morph-blob-2 30s infinite alternate ease-in-out;
 		}
 
 		.animate-blob-3 {
-			animation: blob-bounce-3 20s infinite alternate ease-in-out;
-		}
-
-		/* Interactive Mouse Glow Spotlight */
-		.mouse-glow {
-			background: radial-gradient(600px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px), var(--accent-glow-color), transparent 80%);
-			opacity: 0;
-			transition: opacity 0.8s ease;
-			pointer-events: none;
+			animation: morph-blob-3 20s infinite alternate ease-in-out;
 		}
 
 		/* Theme Switcher Styles */
@@ -218,7 +221,6 @@
 		<div class="absolute w-[500px] h-[500px] rounded-full blob-1 blur-[120px] top-[-10%] left-[-10%] animate-blob-1"></div>
 		<div class="absolute w-[600px] h-[600px] rounded-full blob-2 blur-[130px] bottom-[-10%] right-[-10%] animate-blob-2"></div>
 		<div class="absolute w-[400px] h-[400px] rounded-full blob-3 blur-[100px] top-[30%] right-[10%] animate-blob-3"></div>
-		<div class="absolute inset-0 mouse-glow"></div>
 		<div class="absolute inset-0 bg-dots opacity-60"></div>
 	</div>
 
@@ -317,18 +319,6 @@
 		document.addEventListener('DOMContentLoaded', () => {
 			const savedTheme = localStorage.getItem('portfolio-theme') || 'executive';
 			updateThemeButtons(savedTheme);
-		});
-
-		// Interactive mouse glow tracker (spotlight)
-		let hasMoved = false;
-		document.addEventListener('mousemove', (e) => {
-			if (!hasMoved) {
-				const glow = document.querySelector('.mouse-glow');
-				if (glow) glow.style.opacity = '1';
-				hasMoved = true;
-			}
-			document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-			document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
 		});
 	</script>
 
