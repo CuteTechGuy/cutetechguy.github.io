@@ -130,7 +130,7 @@
 		.blob-2 { background-color: var(--blob2-color); }
 		.blob-3 { background-color: var(--blob3-color); }
 
-		/* Liquid Morphing GPU-Accelerated Animations */
+		/* Liquid Morphing GPU-Accelerated Animations (Executive Emerald Theme) */
 		@keyframes morph-blob-1 {
 			0% {
 				border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
@@ -184,16 +184,95 @@
 			}
 		}
 
+		/* Gentle Breathing Animation (Nordic Minimalist Theme) */
+		@keyframes soft-pulse {
+			0% {
+				transform: translate3d(0px, 0px, 0) scale(1);
+				opacity: 0.35;
+			}
+			100% {
+				transform: translate3d(30px, -30px, 0) scale(1.1);
+				opacity: 0.65;
+			}
+		}
+
+		/* Sharp Tech Pulse Animations (Cyber Zinc Theme) */
+		@keyframes cyber-pulse-1 {
+			0% {
+				transform: translate3d(0px, 0px, 0) scale(1);
+				filter: blur(120px) brightness(1);
+			}
+			50% {
+				transform: translate3d(60px, -30px, 0) scale(1.2);
+				filter: blur(100px) brightness(1.25);
+			}
+			100% {
+				transform: translate3d(0px, 0px, 0) scale(1);
+				filter: blur(120px) brightness(1);
+			}
+		}
+
+		@keyframes cyber-pulse-2 {
+			0% {
+				transform: translate3d(0px, 0px, 0) scale(1.15);
+			}
+			50% {
+				transform: translate3d(-40px, 50px, 0) scale(0.95);
+			}
+			100% {
+				transform: translate3d(0px, 0px, 0) scale(1.15);
+			}
+		}
+
+		/* Downward Digital Scan Grid Animation (Cyber Zinc Theme) */
+		@keyframes grid-scroll-down {
+			0% {
+				background-position: 0 0;
+			}
+			100% {
+				background-position: 0 24px;
+			}
+		}
+
+		/* Default / Executive Theme Anim bindings */
 		.animate-blob-1 {
 			animation: morph-blob-1 25s infinite alternate ease-in-out;
 		}
-
 		.animate-blob-2 {
 			animation: morph-blob-2 30s infinite alternate ease-in-out;
 		}
-
 		.animate-blob-3 {
 			animation: morph-blob-3 20s infinite alternate ease-in-out;
+		}
+
+		/* Nordic theme overrides: Gentle corner pulses, hide 3rd blob */
+		.theme-nordic .animate-blob-1 {
+			animation: soft-pulse 15s infinite alternate ease-in-out;
+			border-radius: 50%;
+		}
+		.theme-nordic .animate-blob-2 {
+			animation: soft-pulse 18s infinite alternate-reverse ease-in-out;
+			border-radius: 50%;
+		}
+		.theme-nordic .animate-blob-3 {
+			display: none;
+		}
+
+		/* Cyber theme overrides: Scanning scrolling dots, fast digital pulses */
+		.theme-cyber .bg-dots {
+			animation: grid-scroll-down 4s linear infinite;
+		}
+		.theme-cyber .animate-blob-1 {
+			animation: cyber-pulse-1 12s infinite ease-in-out;
+			border-radius: 50%;
+		}
+		.theme-cyber .animate-blob-2 {
+			animation: cyber-pulse-2 15s infinite ease-in-out;
+			border-radius: 50%;
+		}
+		.theme-cyber .animate-blob-3 {
+			animation: cyber-pulse-1 18s infinite reverse ease-in-out;
+			border-radius: 50%;
 		}
 
 		/* Theme Switcher Styles */
