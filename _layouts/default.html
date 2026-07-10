@@ -21,6 +21,8 @@
 				html.classList.add('theme-nordic');
 			} else if (savedTheme === 'cyber') {
 				html.classList.add('theme-cyber');
+			} else if (savedTheme === 'relay') {
+				html.classList.add('theme-relay');
 			}
 		})();
 	</script>
@@ -50,10 +52,10 @@
 	<style>
 		/* Global resets for fonts and typography */
 		h1, h2, h3, h4, h5, h6, .font-serif {
-			font-family: 'Lora', Georgia, serif !important;
+			font-family: var(--font-heading, 'Lora', Georgia, serif) !important;
 		}
 		body, p, ul, li, span, button, a, .font-sans {
-			font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+			font-family: var(--font-body, 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif) !important;
 		}
 
 		/* Canvas Background */
@@ -77,6 +79,8 @@
 			--accent-hover-color: #b0936d;
 			--border-color: rgba(244, 244, 243, 0.08);
 			--badge-bg: rgba(197, 168, 128, 0.08);
+			--font-heading: 'Lora', Georgia, serif;
+			--font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 		}
 
 		/* Theme 2: Gallery Light (Warm Alabaster & Burgundy Accent) */
@@ -89,6 +93,8 @@
 			--accent-hover-color: #a74b37;
 			--border-color: rgba(28, 28, 30, 0.08);
 			--badge-bg: rgba(192, 92, 70, 0.08);
+			--font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+			--font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 		}
 
 		/* Theme 3: Slate Monochrome (Ink Black & Cool Silver Accent) */
@@ -101,6 +107,50 @@
 			--accent-hover-color: #e5e7eb;
 			--border-color: rgba(242, 242, 243, 0.06);
 			--badge-bg: rgba(255, 255, 255, 0.06);
+			--font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+			--font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+		}
+
+		/* Theme 5: Relay Modern Tech (Deep Void Black & Indigo/Violet Gradient) */
+		.theme-relay {
+			--bg-color: #030712;
+			--card-bg-color: #0c0a09; /* Zinc 950/900 mix */
+			--text-primary: #f4f4f5;
+			--text-secondary: #a1a1aa;
+			--accent-color: #a855f7; /* Violet */
+			--accent-hover-color: #8b5cf6;
+			--border-color: rgba(255, 255, 255, 0.08);
+			--badge-bg: rgba(168, 85, 247, 0.1);
+			--font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+			--font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+		}
+
+
+
+		.theme-relay .theme-title-gradient {
+			background: linear-gradient(135deg, #c084fc 0%, #6366f1 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+		}
+
+		.theme-relay .markdown-content h2 {
+			display: flex;
+			align-items: center;
+			gap: 0.625rem;
+			border-bottom: none;
+			padding-bottom: 0;
+			margin-top: 4rem;
+			font-weight: 700;
+			letter-spacing: -0.02em;
+		}
+
+		.theme-relay .markdown-content h2::before {
+			content: "";
+			display: inline-block;
+			width: 0.35rem;
+			height: 1.25rem;
+			background: linear-gradient(to bottom, #a855f7, #6366f1);
+			border-radius: 9999px;
 		}
 
 		/* Hidden Arcade Theme (Unlocked via gamepad or Konami Code) */
@@ -113,6 +163,8 @@
 			--accent-hover-color: #e60072;
 			--border-color: rgba(57, 255, 20, 0.2);
 			--badge-bg: rgba(57, 255, 20, 0.05);
+			--font-heading: 'Courier New', Courier, monospace;
+			--font-body: 'Courier New', Courier, monospace;
 		}
 
 		/* Phosphor scanline overlay for Arcade Theme */
@@ -150,7 +202,7 @@
 
 		/* Custom styles for rendered markdown content (Editorial theme overrides) */
 		.markdown-content h2 {
-			font-family: 'Lora', Georgia, serif !important;
+			font-family: var(--font-heading, 'Lora', Georgia, serif) !important;
 			font-size: 1.5rem;
 			font-weight: 600;
 			color: var(--text-primary);
@@ -162,7 +214,7 @@
 		}
 
 		.markdown-content p.summary {
-			font-family: 'Lora', Georgia, serif !important;
+			font-family: var(--font-heading, 'Lora', Georgia, serif) !important;
 			font-size: 1.125rem;
 			font-style: italic;
 			color: var(--text-primary);
@@ -210,6 +262,9 @@
 				<button onclick="setTheme('cyber')" id="btn-theme-cyber" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary">
 					<i class="fa-solid fa-terminal"></i> <span class="hidden sm:inline">Cyber</span>
 				</button>
+				<button onclick="setTheme('relay')" id="btn-theme-relay" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary">
+					<i class="fa-solid fa-circle-nodes text-[#a855f7]"></i> <span class="hidden sm:inline">Relay</span>
+				</button>
 				<button onclick="activateArcadeMode()" id="btn-theme-arcade" class="theme-btn px-3 py-1.5 rounded-full flex items-center gap-1.5 text-textSecondary" title="Unlock retro game easter egg!">
 					<i class="fa-solid fa-gamepad text-[#ff007f]"></i> <span class="hidden sm:inline text-xs">Arcade</span>
 				</button>
@@ -221,7 +276,7 @@
 			class="text-center md:text-left md:flex md:items-center md:justify-between border-b border-borderColor pb-10">
 			<div>
 				<h1 class="text-4xl md:text-5xl font-serif font-bold tracking-tight text-textPrimary">
-					{{ site.title }}
+					<span class="theme-title-gradient">{{ site.title }}</span>
 				</h1>
 				<p class="text-lg md:text-xl font-sans font-medium text-accent mt-2">
 					{{ site.subtitle }}
@@ -240,6 +295,8 @@
 				</div>
 			</div>
 		</header>
+
+
 
 		<!-- Dynamic Markdown Content Area -->
 		<main class="markdown-content mt-12">
@@ -359,6 +416,23 @@
 							size: Math.random() * 3 + 1
 						});
 					}
+				} else if (theme === 'relay') {
+					// Elegant flowing bezier waves / pipelines
+					this.waves = [
+						{ y: 0.5, amplitude: 80, frequency: 0.003, speed: 0.006, phase: 0, color: 'rgba(168, 85, 247, 0.045)' },
+						{ y: 0.55, amplitude: 60, frequency: 0.004, speed: -0.008, phase: 2, color: 'rgba(99, 102, 241, 0.045)' },
+						{ y: 0.48, amplitude: 40, frequency: 0.005, speed: 0.01, phase: 4, color: 'rgba(139, 92, 246, 0.035)' }
+					];
+					this.packets = [];
+					for (let i = 0; i < 8; i++) {
+						this.packets.push({
+							waveIndex: Math.floor(Math.random() * this.waves.length),
+							xRatio: Math.random(),
+							speed: Math.random() * 0.0018 + 0.0008,
+							size: Math.random() * 2 + 1.5,
+							color: i % 2 === 0 ? 'rgba(168, 85, 247, 0.65)' : 'rgba(99, 102, 241, 0.65)'
+						});
+					}
 				} else if (theme === 'arcade') {
 					// Phosphor rain
 					const columns = Math.floor(this.width / 24);
@@ -383,9 +457,90 @@
 					this.drawConstellation();
 				} else if (this.theme === 'cyber') {
 					this.drawCyberGrid();
+				} else if (this.theme === 'relay') {
+					this.drawRelayWaves();
 				} else if (this.theme === 'arcade') {
 					this.drawMatrixRain();
 				}
+			}
+
+			drawRelayWaves() {
+				// Base background
+				this.ctx.fillStyle = '#030712';
+				this.ctx.fillRect(0, 0, this.width, this.height);
+				
+				// Draw grid overlay (very subtle tech grid)
+				this.ctx.strokeStyle = 'rgba(255, 255, 255, 0.015)';
+				this.ctx.lineWidth = 1;
+				const gridSpacing = 60;
+				for (let x = 0; x < this.width; x += gridSpacing) {
+					this.ctx.beginPath();
+					this.ctx.moveTo(x, 0);
+					this.ctx.lineTo(x, this.height);
+					this.ctx.stroke();
+				}
+				for (let y = 0; y < this.height; y += gridSpacing) {
+					this.ctx.beginPath();
+					this.ctx.moveTo(0, y);
+					this.ctx.lineTo(this.width, y);
+					this.ctx.stroke();
+				}
+
+				// Draw waves
+				this.waves.forEach((w, index) => {
+					w.phase += w.speed;
+					
+					this.ctx.beginPath();
+					this.ctx.strokeStyle = w.color;
+					this.ctx.lineWidth = index === 0 ? 3 : 2;
+					
+					for (let x = 0; x < this.width; x += 10) {
+						const yBase = this.height * w.y;
+						const waveVal = Math.sin(x * w.frequency + w.phase) * w.amplitude;
+						const waveVal2 = Math.cos(x * (w.frequency * 1.7) - w.phase * 0.5) * (w.amplitude * 0.35);
+						const y = yBase + waveVal + waveVal2;
+						
+						if (x === 0) {
+							this.ctx.moveTo(x, y);
+						} else {
+							this.ctx.lineTo(x, y);
+						}
+					}
+					this.ctx.stroke();
+				});
+				
+				// Update and draw glowing packets
+				this.packets.forEach(p => {
+					p.xRatio += p.speed;
+					if (p.xRatio > 1) {
+						p.xRatio = 0;
+						p.waveIndex = Math.floor(Math.random() * this.waves.length);
+					}
+					
+					const w = this.waves[p.waveIndex];
+					const x = p.xRatio * this.width;
+					const yBase = this.height * w.y;
+					const waveVal = Math.sin(x * w.frequency + w.phase) * w.amplitude;
+					const waveVal2 = Math.cos(x * (w.frequency * 1.7) - w.phase * 0.5) * (w.amplitude * 0.35);
+					const y = yBase + waveVal + waveVal2;
+					
+					// Draw glow
+					const grad = this.ctx.createRadialGradient(x, y, 0, x, y, p.size * 5);
+					grad.addColorStop(0, p.color);
+					grad.addColorStop(0.3, p.color.replace('0.65', '0.25'));
+					grad.addColorStop(1, 'rgba(0,0,0,0)');
+					
+					this.ctx.fillStyle = grad;
+					this.ctx.beginPath();
+					this.ctx.arc(x, y, p.size * 5, 0, Math.PI * 2);
+					this.ctx.fill();
+					
+					// Draw core
+					this.ctx.fillStyle = '#ffffff';
+					this.ctx.beginPath();
+					this.ctx.arc(x, y, p.size, 0, Math.PI * 2);
+					this.ctx.fill();
+				});
 			}
 			
 			drawStarfield() {
@@ -508,7 +663,7 @@
 
 		function setTheme(theme) {
 			const html = document.documentElement;
-			html.classList.remove('theme-nordic', 'theme-cyber', 'theme-arcade');
+			html.classList.remove('theme-nordic', 'theme-cyber', 'theme-arcade', 'theme-relay');
 			
 			if (theme === 'nordic') {
 				html.classList.add('theme-nordic');
@@ -516,6 +671,8 @@
 				html.classList.add('theme-cyber');
 			} else if (theme === 'arcade') {
 				html.classList.add('theme-arcade');
+			} else if (theme === 'relay') {
+				html.classList.add('theme-relay');
 			}
 			
 			localStorage.setItem('portfolio-theme', theme);
@@ -531,6 +688,7 @@
 			const btnExecutive = document.getElementById('btn-theme-executive');
 			const btnNordic = document.getElementById('btn-theme-nordic');
 			const btnCyber = document.getElementById('btn-theme-cyber');
+			const btnRelay = document.getElementById('btn-theme-relay');
 			const btnArcade = document.getElementById('btn-theme-arcade');
 			
 			if (!btnExecutive || !btnNordic || !btnCyber) return;
@@ -540,6 +698,7 @@
 				{ el: btnNordic, id: 'nordic' },
 				{ el: btnCyber, id: 'cyber' }
 			];
+			if (btnRelay) buttons.push({ el: btnRelay, id: 'relay' });
 			if (btnArcade) buttons.push({ el: btnArcade, id: 'arcade' });
 			
 			buttons.forEach(item => {
@@ -562,6 +721,9 @@
 			} else if (theme === 'cyber') {
 				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=131417&title_color=d1d5db&text_color=8e939e&icon_color=d1d5db&show_icons=true";
 				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=dark";
+			} else if (theme === 'relay') {
+				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=0a0a0f&title_color=a855f7&text_color=a1a1aa&icon_color=6366f1&show_icons=true";
+				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=dark";
 			} else if (theme === 'arcade') {
 				githubImg.src = "https://github-stats-extended.vercel.app/api?username=CuteTechGuy&bg_color=0c0c0c&title_color=39ff14&text_color=39ff14&icon_color=ff007f&show_icons=true";
 				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=dark";
@@ -570,6 +732,8 @@
 				dailyImg.src = "https://api.daily.dev/devcards/v2/AecnUENoEm505TMHBjRHZ.png?type=wide&theme=dark";
 			}
 		}
+
+
 
 		// Konami Code Easter Egg
 		const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
